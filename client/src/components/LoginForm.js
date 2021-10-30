@@ -5,10 +5,16 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { loginUser } from '../utils/API';
 import Auth from '../utils/auth';
 
+// importing the mutations and queries
+import { userMutation } from '@apollo/react-hooks';
+import { LOGIN_USER } from '../utils/mutations';
+
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  
+  const [loginUser] = userMutation(LOGIN_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
